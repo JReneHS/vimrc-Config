@@ -10,18 +10,25 @@ set mouse=a
 set clipboard=unnamed
 set laststatus=2
 set background=dark
-set sw=4
+set sw=2
 set noshowmode
 set incsearch
 set hlsearch
 set cursorline
 
+set wildmenu "graphical auto complete menu
+set omnifunc=syntaxcomplete#Complete
+set autoindent " enable auto indentation of lines
+set smartindent " allow vim to best-effort guess the indentation
+
+
+
 let mapleader=" "
 nmap <Leader>w :w<CR>
-nmap <Leader>wq :wq<CR>
-nmap <Leader>qq :q!<CR>
-nmap <Leader>q :q<CR>
-
+nmap <Leader>q :wq<CR>
+nmap <Leader>x :q!<CR>
+imap <C-BS> <C-W>
+set backspace=indent,eol,start
 
 call plug#begin('C:\Users\renep\vimfiles\plugin')
 
@@ -32,14 +39,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'frazrepo/vim-rainbow'
 
 "Syntax help lenguage
-Plug 'sheerun/vim-polyglot'
-Plug 'Shougo/neco-syntax'
-Plug 'Shougo/neocomplete.vim'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'wolfgangMehner/c-support'
-Plug 'leafgarland/typescript-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'mattn/emmet-vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'vim-syntastic/syntastic'
 
 
 "Others
@@ -47,17 +48,21 @@ Plug 'scrooloose/nerdtree'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-surround'
+Plug 'Raimondi/delimitMate'
+Plug 'terryma/vim-multiple-cursors'
 
+"Plug 'ervandew/supertab'
+Plug 'msanders/snipmate.vim'
 
 call plug#end()
 
 "Temas de color
 colorscheme palenight
 let g:lightline = { 'colorscheme': 'palenight'}
-let g:airline_theme = "palenight"
+let g:airline_theme = "deus"
 set termguicolors
 let g:rainbow_active = 1
-
 
 "NerdTree
 let g:NERDTreeChDirMode = 2  " Cambia el directorio actual al nodo padre actual
@@ -71,10 +76,7 @@ nmap <Leader>nt :NERDTreeFind<CR>
 let g:indentLine_fileTypeExclude = ['text', 'sh', 'help', 'terminal']
 let g:indentLine_bufNameExclude = ['NERD_tree.*', 'term:.*']
 
-
 let g:python3_host_prog ='C:\Users\renep\AppData\Local\Programs\Python\Python39\python.exe'
-let g:nvim_typescript#server_path=''
-
 
 "GitGutter refresh
 set updatetime=250
@@ -83,20 +85,21 @@ set updatetime=250
 let g:airline#extensions#tabline#enabled = 1  " Mostrar buffers abiertos (como pestañas)
 let g:airline#extensions#tabline#fnamemod = ':t'  " Mostrar sólo el nombre del archivo
 
-"TypeScript
-let g:typescript_indent_disable = 1
-let g:typescript_opfirst='\%([<>=,?^%|*/&]\|\([-:+]\)\1\@!\|!=\|in\%(stanceof\)\=\>\)'
-autocmd FileType typescript :set makeprg=tsc
-let g:typescript_compiler_binary = 'tsc'
-let g:typescript_compiler_options = ''
-
-"C help
-let g:C_useTool_cmake='yes'
-let g:C_useTool_doxygen='yes'
+"GO
+let g:go_gopls_enabled = 0
 
 
-"JavaSript
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_ngdoc = 1
-let g:javascript_plugin_flow = 1
+"Multiple cursors
+let g:multi_cursor_use_default_mapping=0
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
 
+let g:SuperTabDefaultCompletionType = '<A-n>'
+let g:SuperTabContextDefaultCompletionType = '<A-n>'

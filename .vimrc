@@ -37,11 +37,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'frazrepo/vim-rainbow'
+Plug 'rafi/awesome-vim-colorschemes'
 
 "Syntax help lenguage
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-syntastic/syntastic'
-
+Plug 'octol/vim-cpp-enhanced-highlight'
 
 "Others
 Plug 'scrooloose/nerdtree'
@@ -58,8 +59,8 @@ Plug 'msanders/snipmate.vim'
 call plug#end()
 
 "Temas de color
-colorscheme palenight
-let g:lightline = { 'colorscheme': 'palenight'}
+colorscheme molokai
+let g:lightline = {'colorscheme': 'molokai'}
 let g:airline_theme = "deus"
 set termguicolors
 let g:rainbow_active = 1
@@ -88,6 +89,12 @@ let g:airline#extensions#tabline#fnamemod = ':t'  " Mostrar sólo el nombre del 
 "GO
 let g:go_gopls_enabled = 0
 
+"Octol
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_posix_standard = 1
+let g:cpp_concepts_highlight = 1
 
 "Multiple cursors
 let g:multi_cursor_use_default_mapping=0

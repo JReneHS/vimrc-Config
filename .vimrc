@@ -2,6 +2,7 @@ set number
 set numberwidth=1
 set relativenumber
 syntax enable
+syntax on
 set showcmd
 set ruler
 set encoding=utf-8
@@ -16,18 +17,24 @@ set incsearch
 set hlsearch
 set cursorline
 
+filetype plugin indent on
+
 set wildmenu "graphical auto complete menu
 set omnifunc=syntaxcomplete#Complete
 set autoindent " enable auto indentation of lines
 set smartindent " allow vim to best-effort guess the indentation
 
-
+set t_Co=256
 
 let mapleader=" "
 nmap <Leader>w :w<CR>
 nmap <Leader>q :wq<CR>
 nmap <Leader>x :q!<CR>
 imap <C-BS> <C-W>
+nmap <f1> :RustRun<CR>
+nmap <f2> :Cbuild<CR>
+nmap <f3> :Crun<CR>
+
 set backspace=indent,eol,start
 
 call plug#begin('C:\Users\renep\vimfiles\plugin')
@@ -38,11 +45,16 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'frazrepo/vim-rainbow'
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'lewis6991/moonlight.vim'
+Plug 'ParamagicDev/vim-medic_chalk'
+
 
 "Syntax help lenguage
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-syntastic/syntastic'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'rust-lang/rust.vim'
+
 
 "Others
 Plug 'scrooloose/nerdtree'
@@ -53,16 +65,17 @@ Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'terryma/vim-multiple-cursors'
 
+
 "Plug 'ervandew/supertab'
 Plug 'msanders/snipmate.vim'
 
 call plug#end()
 
 "Temas de color
-colorscheme molokai
-let g:lightline = {'colorscheme': 'molokai'}
-let g:airline_theme = "deus"
 set termguicolors
+colorscheme medic_chalk 
+let g:lightline = {'colorscheme': 'medic_chalk'}
+let g:airline_theme = "deus"
 let g:rainbow_active = 1
 
 "NerdTree
@@ -110,3 +123,6 @@ let g:multi_cursor_quit_key            = '<Esc>'
 
 let g:SuperTabDefaultCompletionType = '<A-n>'
 let g:SuperTabContextDefaultCompletionType = '<A-n>'
+
+"Rust
+let g:rustfmt_autosave = 1

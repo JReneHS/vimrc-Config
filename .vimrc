@@ -27,10 +27,21 @@ set guifont=Fira\ Code
 filetype plugin indent on
 set backspace=indent,eol,start
 set wildmenu "graphical auto complete menu"
+set wildmode=list:longest,full
 set omnifunc=syntaxcomplete#Complete
 set autoindent "en wildmenuable auto indentation of lines"
 set smartindent "allow vim to best-effort guess the indentation"
 
+set backup                       " Be safe.
+set scrolloff=3                  " Always show 3 lines of context.
+set ttyfast lazyredraw           " Make drawing fast.
+set visualbell                   " Blink instead of making noise.
+set hidden                       " Allow buffer backgrounding.
+set cindent                      " Automatic indentation.
+set ignorecase                   " Ignore case when searching.
+set smartcase                    " Don't ignore it when pattern contains uppercase.
+set history=9876                 " Remember a lot.
+set undofile                     " Saves undo history across sessions.
 "Fix Alacritty mouse"
 "set ttymouse=sgr
 

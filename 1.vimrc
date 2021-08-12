@@ -2,69 +2,74 @@ syntax on
 syntax enable
 filetype plugin indent on
 
-set mouse=a
-set mouse=nicr
-set encoding=utf-8
-set showmatch
-set clipboard=unnamed,unnamedplus
-set number relativenumber
-set nowrap
-set cursorline
-set hidden
-set ignorecase
-set smartcase
-set incsearch
-set nohlsearch
-set shell=sh
-set spell spelllang=en,es
-set termguicolors
-set scrolloff=3
-set ttyfast lazyredraw
-set backspace=indent,eol,start
-set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set cindent
-set history=9876
-set splitbelow
-set splitright
-set autoindent
-set smarttab
-set smartindent
-set noshowmode
-set visualbell
+set mouse=a                             " Mouse Click
+set mouse=nicr                          " Mouse Scrolling
+set encoding=utf-8                      " Unicode.
+set showmatch                           " Show matching bracket.
+set clipboard=unnamed,unnamedplus       " public copy/paste register
+set number relativenumber               " Numbers lol
+set nowrap                              " Longest lines don't cut
+set cursorline                          " Highlight the current line.
+set hidden                              " TextEdit maight fail if hidden is not set
+set ignorecase                          " searches are case insensitive...
+set smartcase                           " unless they contain at least one capital letter
+set incsearch                           " search as characters are entered
+set nohlsearch                          " Turn off highlighting.
+set shell=sh                            " Vim only needs sh.
+set spell spelllang=en,es               " Language
+set termguicolors                       " pretty colors
+set scrolloff=3                         " Always show 3 lines of context.
+set ttyfast lazyredraw                  " Make drawing fast.
+set backspace=indent,eol,start          " Sane backspace.
+set expandtab                           " Use spaces instead of tabs.
+set tabstop=4                           " One tab == four spaces.
+set shiftwidth=4                        " Spaces to use per indent.
+set cindent                             " Automatic indentation.
+set history=9876                        " More remembers 
+set splitbelow                          " New tab down
+set splitright                          " New tab right
+set autoindent                          " emm indent auto?
+set smarttab                            " Be smart using tabs ;)
+set smartindent                         " Same un but using indent lol
+set visualbell                          " Blink instead of making noise.
 set complete+=kspell
 set completeopt=menuone,longest
-set shortmess+=c
-set wildmenu
-set autoread
-set showmode
-set showcmd
-set laststatus=2 statusline=2
-set t_Co=256
-set path+=**
-set autochdir
+set shortmess+=c                        " Don't pass message to ins-completion-menu
+set wildmenu                            " graphical auto complete menu
+set autoread                            " if file change out of vim re-read
+set showmode                            " show mode active
+set showcmd                             " show last comand
+set laststatus=2 statusline=2           " Always show statusline
+set t_Co=256                            " Set if term supports 256 colors.
+set path+=**                            " Searches current directory recursively.
+set updatetime=300                      " No Longer updatetime
+set autochdir                           " change the current working directory whenever you open a file
 set omnifunc=syntaxcomplete#Complete
 
 let mapleader=" "
 
+"fast save and fast exit
 nmap <leader>w :w<CR>
 nmap <leader>q :wq<CR>
 nmap <leader>x :q!<CR>
 
+"TO-DO Fix that shit
 nmap <Left>  h
 nmap <Right> l
 nmap <Up>    k
 nmap <Down>  j
 
+"Move
 nnoremap <C-down> <C-W><C-J>
 nnoremap <C-up> <C-W><C-K>
 nnoremap <C-right> <C-W><C-L>
 nnoremap <C-left> <C-W><C-H>
 
-imap <c-BS> <C-W>                "TO-DO hacer que funcione esta mierda"
-nmap <F12> :%y+<CR>
+
+"TO-DO hacer que funcione esta mierda
+imap <C-BS> <C-W>                       
+"Copy all file
+nmap <F12> :%y+<CR>                     
 
 map <leader>th <C-w>t<C-w>H
 map <leader>tk <C-w>t<C-w>K
@@ -83,7 +88,8 @@ set statusline+=\ %cΞ«%l/%L»
 set statusline+=\ %p%%
 set statusline+=%#IncSearch#
 set statusline+=\ [%n]
- 
+
+" Terminal fix 24-bit.
 let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
 let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 
@@ -115,23 +121,3 @@ inoremap () ()<left>
 inoremap '' ''<left>
 inoremap "" ""<left>
 inoremap [] []<left>
-
-"//////////<<<<<EXPERIMENTAL>>>>>/////////"
-
-" Make Y behave like C and D.
-nnoremap Y y$
-
-" Keep it centered.
-nnoremap n nzzzv
-nnoremap N Nzzzv
-nnoremap * *zzzv
-nnoremap # #zzzv
-nnoremap J mzJ`z
-
-" Undo break points.
-inoremap , ,<C-g>u
-inoremap . .<C-g>u
-
-" Jumplist mutations.
-nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
-nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'

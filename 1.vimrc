@@ -3,17 +3,16 @@ syntax enable
 filetype plugin indent on
 
 set mouse=a
-set mouse=nicr                          "integracion de mouse
+set mouse=nicr
 set encoding=utf-8
 set showmatch
 set clipboard=unnamed,unnamedplus
 set number relativenumber
-set title                               "titulo en la parte superior
-set nowrap                              "no corta lineas largas
-set cursorline                          "resalta la linea en uso
-set hidden                              "permite cambiar de buffer
-set ignorecase                          "ignora mayusculas en busquedas
-set smartcase                           "No ignora mayusculas en busquedas
+set nowrap
+set cursorline
+set hidden
+set ignorecase
+set smartcase
 set incsearch
 set nohlsearch
 set shell=sh
@@ -22,11 +21,26 @@ set termguicolors
 set scrolloff=3
 set ttyfast lazyredraw
 set backspace=indent,eol,start
-set expandtab tabstop=4 softtabstop=4 shiftwidth=4 cindent history=9876
-set splitbelow splitright autoindent
-set smarttab smartindent noshowmode visualbell
-set complete+=kspell completeopt=menuone,longest
-set shortmess+=c wildmenu autoread showmode showcmd
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set cindent
+set history=9876
+set splitbelow
+set splitright
+set autoindent
+set smarttab
+set smartindent
+set noshowmode
+set visualbell
+set complete+=kspell
+set completeopt=menuone,longest
+set shortmess+=c
+set wildmenu
+set autoread
+set showmode
+set showcmd
 set laststatus=2 statusline=2
 set t_Co=256
 set path+=**
@@ -49,7 +63,7 @@ nnoremap <C-up> <C-W><C-K>
 nnoremap <C-right> <C-W><C-L>
 nnoremap <C-left> <C-W><C-H>
 
-imap <c-BackSpace> <C-W>
+imap <c-BS> <C-W>                "TO-DO hacer que funcione esta mierda"
 nmap <F12> :%y+<CR>
 
 map <leader>th <C-w>t<C-w>H

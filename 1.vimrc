@@ -107,7 +107,7 @@ function AddTemplate(tmpl_file)
     exe '%s/<<\([^>]*\)>>/\=substDict[submatch(1)]/g'
     set nomodified
     normal G
-endfunction<F12>
+endfunction
 
 inoremap {<CR> {<CR>}<Esc>O
 inoremap {} {}<left>

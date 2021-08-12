@@ -67,15 +67,20 @@ nnoremap <C-left> <C-W><C-H>
 
 
 "TO-DO hacer que funcione esta mierda
-imap <C-BS> <C-W>                       
+imap <C-BS> <C-W>
 "Copy all file
-nmap <F12> :%y+<CR>                     
+nmap <F12> :%y+<CR>
 
+"Manejo de Tabs
 map <leader>th <C-w>t<C-w>H
 map <leader>tk <C-w>t<C-w>K
 
+"recarga del init.vim
 autocmd filetype vim map <C-s> :source ~/.config/nvim/init.vim<CR>
 
+"Open Terminal
+nnoremap <F7> :w <bar> :vnew <bar> :term <CR>
+ 
 "Status Line
 set statusline=
 set statusline+=\ %h
@@ -121,3 +126,4 @@ inoremap () ()<left>
 inoremap '' ''<left>
 inoremap "" ""<left>
 inoremap [] []<left>
+

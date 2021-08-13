@@ -33,6 +33,8 @@ set smarttab                            " Be smart using tabs ;)
 set smartindent                         " Same un but using indent lol
 set visualbell                          " Blink instead of making noise.
 set complete+=kspell
+set noswapfile                          " No files to Swap
+set nobackup                            " No backup F
 set completeopt=menuone,longest
 set shortmess+=c                        " Don't pass message to ins-completion-menu
 set wildmenu                            " graphical auto complete menu
@@ -104,16 +106,30 @@ inoremap <expr> <Right> pumvisible() ? "<C-y>" : "<Right>"
 inoremap <expr> <CR> pumvisible() ? "<C-y>" :"<CR>"
 inoremap <expr> <Left> pumvisible() ? "<C-e>" :"<Left>"
 
-"C++"
-autocmd filetype cpp nnoremap <F1> :w <bar> !time ./a.out<a.in <CR>
-autocmd filetype cpp nnoremap <F2> :w <bar> !g++ -std=c++17 -O2 -Wall % && time ./a.out<a.in <CR>
-autocmd filetype cpp nnoremap <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\1<CR> $
-autocmd BufNewFile *.cpp call AddTemplate(" ~/template.cpp")
+"C/C++"
+autocmd filetype cpp,c nnoremap <F1> :w <bar> !time ./a.out<a.in <CR>
+autocmd filetype cpp,c nnoremap <F2> :w <bar> !g++ -std=c++17 -O2 -Wall % && time ./a.out<a.in <CR>
+autocmd filetype cpp,c nnoremap cmain :call AddTemplate(" ~/.templates/template_CP.cpp")<CR>4<up>i<tab>
+autocmd filetype cpp nnoremap fmain :-1read ~/.templates/template_main.cpp <CR>5<Down>i<tab>
+autocmd filetype c nnoremap fmain :-1read ~/.templates/template_main.c <CR>4<Down>i<tab>
+
+
+"Rust"
+autocmd filetype rust nnoremap <F1> :w <bar> !time ./%:t:r < a.in <CR>
+autocmd filetype rust nnoremap <F2> :w <bar> !rustc % && time ./%:t:r < a.in <CR>
+
+"Add Data"
+autocmd filetype cpp,c,rust nnoremap data :call AddTemplate(" ~/.templates/template_Data01")<CR><CR>
+
+"Coment Line"
+autocmd filetype cpp,c,rust nnoremap <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\1<CR> $
+
 
 function AddTemplate(tmpl_file)
     exe "0read " . a:tmpl_file
     let substDict = {}
     let substDict["name"] = "GioKim"
+    let substDict["file"] = argv(0)
     let substDict["date"] = strftime("%Y %b %d %X")
     exe '%s/<<\([^>]*\)>>/\=substDict[submatch(1)]/g'
     set nomodified
@@ -126,4 +142,3 @@ inoremap () ()<left>
 inoremap '' ''<left>
 inoremap "" ""<left>
 inoremap [] []<left>
-

@@ -102,8 +102,11 @@ autocmd filetype rust nnoremap <F2> :w <bar> !rustc % && %:t:r.exe < a.in <CR>
 autocmd filetype rust nnoremap <F3> :w <bar> !cargo run <CR>
 autocmd filetype rust nnoremap <F4> :w <bar> !cargo build <CR>
 
-"Add Data"
+"Add Data Windows"
 autocmd filetype cpp,c,rust nnoremap data :call AddTemplate("C:/Users/renep/templates/template_Data01")<CR><CR>
+
+"Add Data Linux"
+autocmd filetype cpp,c,rust nnoremap data :call AddTemplate(" ~/.templates/template_Data01")<CR><CR>
 
 "Coment Line"
 autocmd filetype cpp,c,rust nnoremap <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\1<CR> $

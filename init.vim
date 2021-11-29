@@ -15,7 +15,6 @@ set ignorecase                          " searches are case insensitive..."
 set smartcase                           " unless they contain at least one capital letter"
 set incsearch                           " search as characters are entered"
 set nohlsearch                          " Turn off highlighting."
-set shell=sh                            " Vim only needs sh."
 set spell spelllang=en,es               " Language"
 set termguicolors                       " pretty colors"
 set scrolloff=3                         " Always show 3 lines of context."
@@ -53,24 +52,34 @@ nmap <leader>w :w<CR>
 nmap <leader>q :wq<CR>
 nmap <leader>x :q!<CR>
 
-"Move"
-nnoremap <C-down> <C-W><C-J>
-nnoremap <C-up> <C-W><C-K>
-nnoremap <C-right> <C-W><C-L>
-nnoremap <C-left> <C-W><C-H>
+"Split navigation"
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+"Disable arrow keys"
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+" Keep it centered.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap * *zzzv
+nnoremap # #zzzv
+nnoremap J mzJ`z
 
 "Copy all file"
-nmap <F12> :%y+<CR>
+nmap <leader>c :%y+<CR>
 
 "Manejo de Tabs"
 map <leader>th <C-w>t<C-w>H
 map <leader>tk <C-w>t<C-w>K
 
-"recarga del init.vim"
-autocmd filetype vim map <C-s> :source ~/.config/nvim/init.vim<CR>
-
-"Open Terminal"
-nnoremap <F7> :w <bar> :vnew <bar> :term <CR>
+"Open New Tab"
+nnoremap <C-n> :vnew<CR>
  
 "Status Line"
 set statusline=
@@ -89,18 +98,33 @@ set statusline+=\ [%n]
 let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
 let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 
-"C/C++"
+"Crear a.in"
+autocmd filetype cpp,c,rust,go,nim nnoremap <F7> :w <bar> :new a.in<bar> :wq <CR>
+
+"C/C++ Linux"
 autocmd filetype cpp,c nnoremap <F1> :w <bar> !time ./a.out<a.in <CR>
 autocmd filetype cpp,c nnoremap <F2> :w <bar> !g++ -std=c++17 -O2 -Wall -Wpedantic % && time ./a.out<a.in <CR>
 autocmd filetype cpp,c nnoremap cmain :call AddTemplate(" ~/.templates/template_CP.cpp")<CR>4<up>i<tab>
 autocmd filetype cpp nnoremap fmain :-1read ~/.templates/template_main.cpp <CR>5<Down>i<tab>
 autocmd filetype c nnoremap fmain :-1read ~/.templates/template_main.c <CR>4<Down>i<tab>
 
+"C/C++ Windows"
+autocmd filetype cpp,c nnoremap <F1> :w <bar> ! a.exe < a.in <CR>
+autocmd filetype cpp,c nnoremap <F2> :w <bar> !g++ -std=c++17 -O2 -Wall -Wpedantic % && a.exe < a.in <CR>
+autocmd filetype cpp,c nnoremap cmain :call AddTemplate("C:/Users/renep/Documents/templates/template_CP.cpp")<CR>4<up>i<tab>
+autocmd filetype cpp nnoremap main :-1read C:/Users/renep/Documents/templates/template_main.cpp <CR>5<Down>i<tab>
+autocmd filetype c nnoremap main :-1read C:/Users/renep/Documents/templates/template_main.c <CR>4<Down>i<tab>
+
 "Rust"
 autocmd filetype rust nnoremap <F1> :w <bar> ! %:t:r.exe < a.in <CR>
 autocmd filetype rust nnoremap <F2> :w <bar> !rustc % && %:t:r.exe < a.in <CR>
 autocmd filetype rust nnoremap <F3> :w <bar> !cargo run <CR>
 autocmd filetype rust nnoremap <F4> :w <bar> !cargo build <CR>
+
+"Golang"
+autocmd filetype go nnoremap <F1> :w <bar> ! %:t:r.exe < a.in <CR>
+autocmd filetype go nnoremap <F2> :w <bar> !go build % <CR>
+autocmd filetype go nnoremap <F3> :w <bar> !go run % <CR>
 
 "Add Data Windows"
 autocmd filetype cpp,c,rust nnoremap data :call AddTemplate("C:/Users/renep/templates/template_Data01")<CR><CR>
@@ -109,7 +133,7 @@ autocmd filetype cpp,c,rust nnoremap data :call AddTemplate("C:/Users/renep/temp
 autocmd filetype cpp,c,rust nnoremap data :call AddTemplate(" ~/.templates/template_Data01")<CR><CR>
 
 "Coment Line"
-autocmd filetype cpp,c,rust nnoremap <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\1<CR> $
+autocmd filetype cpp,c,rust,go nnoremap <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\1<CR> $
 
 function AddTemplate(tmpl_file)
     exe "0read " . a:tmpl_file
